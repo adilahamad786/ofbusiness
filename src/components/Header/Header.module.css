@@ -1,0 +1,77 @@
+.header {
+    width: 100%;
+    background-color: rgb(246, 248, 250);
+    padding-top: 1rem;
+}
+
+.topBar {
+    width: 90%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    margin: 0px auto;
+    justify-content: space-between;
+}
+
+.breadcrumb {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.breadcrumb a {
+    color: blue;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+}
+
+
+.notificationButtons {
+    display: flex;
+    gap: 1rem;
+    font-size: 14px;
+}
+
+
+.star, .fork, .notificationCount {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgb(209, 217, 224);
+    padding: 0.2rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.starLabel, .starCount, .forkLabel, .forkCount {
+    display: flex;
+    gap: 0.2rem;
+}
+
+.navber {
+    display: flex;
+    height: 3rem;
+    margin-top: 5rem;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 4rem;
+    font-weight: 400;
+    margin-top: 2rem;
+    font-size: 14px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.2rem 0.5rem;
+}
+
+.options .active {
+    border-bottom: 1px solid orange;
+}

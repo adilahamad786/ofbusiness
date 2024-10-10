@@ -1,0 +1,40 @@
+.item {
+    display: grid;
+    align-items: center;
+    border-top: 1px solid rgb(209, 217, 224);
+    padding: 1rem 1rem;
+    grid-template-columns: 0.3fr 5fr 1.5fr;
+}
+
+.end {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.icon {
+    padding: 0rem 1.2rem;
+    width: 100%;
+}
+
+.pull, .comment {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon img {
+    width: 2rem;
+    border-radius: 50%;
+}
+
+.mainTitle {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.timestamp {
+    font-size: 12px;
+    padding-top: 0.5rem;
+    font-weight: 400;
+}
