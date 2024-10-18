@@ -1,18 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import style from "./Main.module.css"
 import Item from '../Item/Item';
 
+var initialLoad = true;
+
 const Main = () => {
-  const [userData, setUserData] = useState()
+  const [userData, setUserData] = useState([])
+
+  const fetchData = useCallback(async() => { // usecallback for memoize function
+    try {
+      let contentHeight = document.documentElement.scrollHeight;
+      let scrollTopHeight = document.documentElement.scrollTop;
+      let visualHeight = window.innerHeight + 100;
+      // 100px gap below if we cross this gap fetch again
+
+      let remainingHeight = contentHeight - scrollTopHeight;
+    
+      if (remainingHeight < visualHeight) {
+        let res = await fetch("https://api.github.com/repos/facebook/react/issues");
+        let githubData = await res.json();
+        setUserData((preState) => [...preState, ...githubData]);
+        // adding new data with old data
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
+  }, [setUserData]) // dependency array 
 
   useEffect(() => {
-    ;(async () => {
-      let res = await fetch("https://api.github.com/repos/facebook/react/issues");
-      let githubData = await res.json();
-      setUserData(githubData);
-      console.log(githubData[0])
-    })()
-  }, [setUserData]);
+
+    if (initialLoad) { // initial load
+      fetchData();
+      initialLoad = false;
+    }
+
+    document.addEventListener("scroll", fetchData); // event triger when scroll
+
+    return () => {
+      document.removeEventListener("scroll", fetchData); // remove event when unmount component
+    }
+
+  }, [fetchData])
+
+  // useEffect(() => {
+  //   ;(async () => {
+  //     let res = await fetch("https://api.github.com/repos/facebook/react/issues");
+  //     let githubData = await res.json();
+  //     setUserData(githubData);
+  //     console.log(githubData[0])
+  //   })()
+  // }, [setUserData]);
+
+
 
   return (
     <div className={style.main}>
